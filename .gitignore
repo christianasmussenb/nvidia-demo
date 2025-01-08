@@ -1,4 +1,7 @@
 .env
+.venv
+env_copy
+*.env
 assets
 docs/*
 db
