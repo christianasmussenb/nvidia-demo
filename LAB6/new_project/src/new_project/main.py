@@ -11,6 +11,11 @@ import textwrap
 from rich.markdown import Markdown
 from rich.console import Console
 
+# Must precede any llm module imports
+import os
+from langtrace_python_sdk import langtrace
+langtrace.init(api_key = os.getenv('LANGTRACE_API_KEY'))
+
 # This main file is intended to be a way for you to run your
 # crew locally, so refrain from adding unnecessary logic into this file.
 # Replace with inputs you want to test with, it will automatically
