@@ -17,7 +17,6 @@ llm = LLM(
 cerebras_llm = LLM(
     model="cerebras/llama3.1-70b", # Replace with your chosen Cerebras model name, e.g., "cerebras/llama3.1-8b"
     api_key=os.environ.get("CEREBRAS_API_KEY"), # Your Cerebras API key
-    #base_url="https://api.cerebras.ai/v1",
     temperature=0.5,
 	max_tokens=8192,
 )
