@@ -1,9 +1,26 @@
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool
+import os
 
-groq_llm = "groq/llama3-8b-8192"
-llm = "gpt-4o-mini"
+groq_llm = LLM(
+    model="groq/llama3-8b-8192",
+    temperature=0.7,
+)
+llm = LLM(
+    model="gpt-4o-mini",
+    temperature=0.8,
+    max_tokens=150,
+    top_p=0.9,
+)
+# Configure the LLM to use Cerebras
+cerebras_llm = LLM(
+    model="cerebras/llama3.1-70b", # Replace with your chosen Cerebras model name, e.g., "cerebras/llama3.1-8b"
+    api_key=os.environ.get("CEREBRAS_API_KEY"), # Your Cerebras API key
+    #base_url="https://api.cerebras.ai/v1",
+    temperature=0.5,
+	max_tokens=8192,
+)
 
 import warnings
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
@@ -50,7 +67,7 @@ class NewProject():
 		return Agent(
 			config=self.agents_config['researcher'],
 			verbose=False,
-			llm=groq_llm
+			llm=cerebras_llm
 			#tools=[SerperDevTool(n_results=5)]
 		)
 
@@ -59,7 +76,7 @@ class NewProject():
 		return Agent(
 			config=self.agents_config['reporting_analyst'],
 			verbose=False,
-			llm=groq_llm
+			llm=cerebras_llm
 		)
 
 	@agent
@@ -67,7 +84,7 @@ class NewProject():
 		return Agent(
 			config=self.agents_config['blog_writer'],
 			verbose=True,
-			llm=groq_llm
+			llm=cerebras_llm
 		)
 
 	# To learn more about structured task outputs, 
