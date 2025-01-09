@@ -26,18 +26,15 @@ def run():
     result = NewProject().crew().kickoff(inputs=inputs)
 
     # Verificar la salida del blog
-    print("Resultado del crew:", result.pydantic.model_dump())  # Agregar esta línea para depuración
+    #print("Resultado del crew:", result.pydantic.model_dump())  # Agregar esta línea para depuración
 
     # Display blog post
-    blog_content = result.pydantic.model_dump().get('blog', None)
-    if blog_content:
-        title = blog_content.get('title', 'Sin título')
-        content = blog_content.get('content', 'Sin contenido')
-        print(f"Título: {title}")
-        wrapped_content = textwrap.fill(content, width=50)
-        print(wrapped_content)
-    else:
-        print("No se encontró contenido del blog.")
+    title = result.pydantic.model_dump().get('title', 'Sin título')
+    content = result.pydantic.model_dump().get('content', 'Sin contenido')
+    
+    print(f"Título: {title}")
+    wrapped_content = textwrap.fill(content, width=50)
+    print(wrapped_content)
 
 def train():
     """

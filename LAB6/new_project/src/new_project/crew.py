@@ -49,8 +49,8 @@ class NewProject():
 	def researcher(self) -> Agent:
 		return Agent(
 			config=self.agents_config['researcher'],
-			verbose=True,
-			llm=llm
+			verbose=False,
+			llm=groq_llm
 			#tools=[SerperDevTool(n_results=5)]
 		)
 
@@ -58,7 +58,7 @@ class NewProject():
 	def reporting_analyst(self) -> Agent:
 		return Agent(
 			config=self.agents_config['reporting_analyst'],
-			verbose=True,
+			verbose=False,
 			llm=groq_llm
 		)
 
@@ -67,7 +67,7 @@ class NewProject():
 		return Agent(
 			config=self.agents_config['blog_writer'],
 			verbose=True,
-			llm=llm
+			llm=groq_llm
 		)
 
 	# To learn more about structured task outputs, 
