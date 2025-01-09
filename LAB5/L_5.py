@@ -9,7 +9,7 @@ import os
 import litellm
 #litellm.set_verbose = True
 
-os.environ['LITELLM_LOG'] = 'DEBUG'
+LITELLM_LOG=os.environ['LITELLM_LOG']
 
 # Load environment variables
 from helper import load_env
