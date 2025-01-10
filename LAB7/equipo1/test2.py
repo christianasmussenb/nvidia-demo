@@ -68,8 +68,11 @@ crew = Crew(
     verbose=True,
     process=Process.sequential,
     knowledge_sources=[
-        pdf_source
+        pdf_source,
+        csv_source,
     ],  # Enable knowledge by adding the sources here. You can also add more sources to the sources list.
+    planning=True,
+    planning_llm=llm,
 )
 
 # Ejecutar el proceso

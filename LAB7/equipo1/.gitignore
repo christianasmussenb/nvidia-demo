@@ -1,2 +1,6 @@
 .env
 __pycache__/
+.venv/
+.vscode/
+.DS_Store
+knowledge/
